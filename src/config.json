@@ -1,3 +1,4 @@
 {
-  "pokeUrl": "https://pokeapi.co/api/v2/"
+  "pokeUrl": "https://pokeapi.co/api/v2/",
+  "sizePage": 50
 }

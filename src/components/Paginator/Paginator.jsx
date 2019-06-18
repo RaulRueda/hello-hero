@@ -16,7 +16,7 @@ const Paginator = props => {
     );
   }
 
-  return <Pagination>{items}</Pagination>;
+  return <Pagination className="pagination-sm">{items}</Pagination>;
 };
 
 export default Paginator;

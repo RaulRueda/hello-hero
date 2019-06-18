@@ -9,7 +9,7 @@ import Paginator from "../Paginator/Paginator";
 import Character from "../Character/Character";
 
 //Configuration
-import { pokeUrl } from "../../config.json";
+import { pokeUrl, sizePage } from "../../config.json";
 
 const List = () => {
   const [getModal, setModal] = useState(false);
@@ -25,17 +25,16 @@ const List = () => {
     const fetchData = async () => {
       const response = await axios.get(
         pokeUrl +
-          "pokemon?limit=100" +
+          "pokemon?limit=" +
+          sizePage +
           "&" +
           "offset=" +
-          100 * (getState.activePage - 1)
+          sizePage * (getState.activePage - 1)
       );
-
-      console.log(response);
 
       setState({
         rowSize: response.data.count,
-        paginationSize: Math.ceil(response.data.count / 100),
+        paginationSize: Math.ceil(response.data.count / sizePage),
         activePage: getState.activePage
       });
       setCharacters(response.data.results);
@@ -45,7 +44,9 @@ const List = () => {
   }, [getState.rowSize, getState.paginationSize, getState.activePage]);
 
   const handleCharacterClick = async id => {
-    const response = await axios.get(pokeUrl + "pokemon/" + id);
+    const response = await axios.get(
+      pokeUrl + "pokemon/" + (id + sizePage * (getState.activePage - 1))
+    );
 
     setModal(true);
 
