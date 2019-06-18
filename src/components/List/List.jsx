@@ -6,13 +6,17 @@ import { ForEach } from "somereactcomponents";
 
 //Components
 import Paginator from "../Paginator/Paginator";
+import Character from "../Character/Character";
 
 const List = () => {
+  const [getModal, setModal] = useState(false);
   const [getState, setState] = useState({
     rowSize: 0,
-    paginationSize: 0
+    paginationSize: 0,
+    showModal: false
   });
   const [getCharacters, setCharacters] = useState([]);
+  const [getCharacter, setCharacter] = useState({});
 
   useEffect(() => {
     const fetchData = async () => {
@@ -32,13 +36,26 @@ const List = () => {
     fetchData();
   }, []);
 
-  const handleCharacterClick = id => {
-    console.log("clicked ", id);
+  const handleCharacterClick = async id => {
+    const response = await axios.get("https://pokeapi.co/api/v2/pokemon/" + id);
+
+    setModal(true);
+
+    setCharacter(response.data);
+  };
+
+  const handleCloseModal = () => {
+    setModal(false);
   };
 
   return (
     <React.Fragment>
       <h2>Pokemons</h2>
+      <Character
+        showModal={getModal}
+        closeModal={handleCloseModal}
+        data={getCharacter}
+      />
       <Table bordered hover>
         <thead>
           <tr>
@@ -59,7 +76,7 @@ const List = () => {
 
 const CharacterRow = props => {
   return (
-    <tr onClick={() => props.clicked(props.index)}>
+    <tr onClick={() => props.clicked(props.index + 1)}>
       <td>{props.index + 1}</td>
       <td>{props.name}</td>
     </tr>
