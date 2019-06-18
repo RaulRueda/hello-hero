@@ -9,11 +9,14 @@ import Home from "./components/Home/Home";
 import About from "./components/About/About";
 import List from "./components/List/List";
 
+//Style
+import "./App.scss";
+
 function App() {
   return (
     <React.Fragment>
       <Header />
-      <Container>
+      <Container className="content-body">
         <Switch>
           <Route path="/list" component={List} />
           <Route path="/about" component={About} />
