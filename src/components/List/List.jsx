@@ -16,26 +16,33 @@ const List = () => {
   const [getState, setState] = useState({
     rowSize: 0,
     paginationSize: 0,
-    showModal: false
+    activePage: 1
   });
   const [getCharacters, setCharacters] = useState([]);
   const [getCharacter, setCharacter] = useState({});
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await axios.get(pokeUrl + "pokemon?limit=20");
+      const response = await axios.get(
+        pokeUrl +
+          "pokemon?limit=100" +
+          "&" +
+          "offset=" +
+          100 * (getState.activePage - 1)
+      );
 
       console.log(response);
 
       setState({
         rowSize: response.data.count,
-        paginationSize: Math.ceil(response.data.count / 100)
+        paginationSize: Math.ceil(response.data.count / 100),
+        activePage: getState.activePage
       });
       setCharacters(response.data.results);
     };
 
     fetchData();
-  }, []);
+  }, [getState.rowSize, getState.paginationSize, getState.activePage]);
 
   const handleCharacterClick = async id => {
     const response = await axios.get(pokeUrl + "pokemon/" + id);
@@ -47,6 +54,14 @@ const List = () => {
 
   const handleCloseModal = () => {
     setModal(false);
+  };
+
+  const handlePageClick = page => {
+    setState({
+      rowSize: getState.rowSize,
+      paginationSize: getState.paginationSize,
+      activePage: page
+    });
   };
 
   return (
@@ -70,7 +85,11 @@ const List = () => {
           </ForEach>
         </tbody>
       </Table>
-      <Paginator size={getState.paginationSize} />
+      <Paginator
+        size={getState.paginationSize}
+        clicked={handlePageClick}
+        activePage={getState.activePage}
+      />
     </React.Fragment>
   );
 };
