@@ -8,6 +8,9 @@ import { ForEach } from "somereactcomponents";
 import Paginator from "../Paginator/Paginator";
 import Character from "../Character/Character";
 
+//Configuration
+import { pokeUrl } from "../../config.json";
+
 const List = () => {
   const [getModal, setModal] = useState(false);
   const [getState, setState] = useState({
@@ -20,9 +23,7 @@ const List = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await axios.get(
-        "https://pokeapi.co/api/v2/pokemon?limit=20"
-      );
+      const response = await axios.get(pokeUrl + "pokemon?limit=20");
 
       console.log(response);
 
@@ -37,7 +38,7 @@ const List = () => {
   }, []);
 
   const handleCharacterClick = async id => {
-    const response = await axios.get("https://pokeapi.co/api/v2/pokemon/" + id);
+    const response = await axios.get(pokeUrl + "pokemon/" + id);
 
     setModal(true);
 
