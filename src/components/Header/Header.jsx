@@ -1,22 +1,26 @@
+//Libraries
 import React from "react";
 import { Link } from "react-router-dom";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
+
+//Style
+import "./Header.scss";
 
 const Header = () => {
   return (
     <Navbar bg="dark">
       <Navbar.Brand href="/">Pokemon</Navbar.Brand>
       <Navbar.Collapse className="justify-content-end">
-        <Nav.Link>
+        <Nav.Item>
           <Link to="/">Home</Link>
-        </Nav.Link>
-        <Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
           <Link to="/list">Pokemons</Link>
-        </Nav.Link>
-        <Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
           <Link to="/about">About</Link>
-        </Nav.Link>
+        </Nav.Item>
       </Navbar.Collapse>
     </Navbar>
   );
