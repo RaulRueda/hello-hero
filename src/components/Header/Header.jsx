@@ -6,11 +6,20 @@ import Nav from "react-bootstrap/Nav";
 
 //Style
 import "./Header.scss";
+import logo from "../../assets/pokeball.png";
 
 const Header = () => {
   return (
     <Navbar bg="dark">
-      <Navbar.Brand href="/">Pokemon</Navbar.Brand>
+      <Navbar.Brand href="/">
+        <img
+          src={logo}
+          width="30"
+          height="30"
+          className="d-inline-block align-top"
+          alt="Pokeball"
+        />
+      </Navbar.Brand>
       <Navbar.Collapse className="justify-content-end">
         <Nav.Item>
           <Link to="/">Home</Link>
