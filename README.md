@@ -2,6 +2,18 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## List of important NPMs used
+
+- [react](https://reactjs.org/)
+- [react-bootstrap](https://react-bootstrap.github.io/)
+- [react-router-dom](https://reacttraining.com/react-router/web/guides/quick-start)
+- [axios](https://github.com/axios/axios)
+- [somereactcomponents](https://github.com/ybrs/somereactcomponents)
+- [node-sass](https://github.com/sass/node-sass)
+- [react-fontawesome](https://fontawesome.com/how-to-use/on-the-web/using-with/react)
+- [jest](https://jestjs.io/)
+- [enzyme](https://airbnb.io/enzyme/docs/api/) (Airbnb JS testing utility)
+
 ## Available Scripts
 
 In the project directory, you can run:
