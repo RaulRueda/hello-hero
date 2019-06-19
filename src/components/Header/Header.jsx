@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faAdjust } from "@fortawesome/free-solid-svg-icons";
+import { faAdjust, faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
 
 //Style
 import "./Header.scss";
@@ -16,6 +16,10 @@ const Header = () => {
 
   const handleColorMode = () => {
     setColorMode(!getColorMode);
+  };
+
+  const handleLogout = () => {
+    console.log("Logout");
   };
 
   return (
@@ -45,6 +49,15 @@ const Header = () => {
         </Nav.Item>
         <Nav.Item>
           <Link to="/about">About</Link>
+        </Nav.Item>
+        <Nav.Item>
+          <Link to="/login">
+            <FontAwesomeIcon
+              className={!getColorMode ? "icon-light" : "icon-dark"}
+              icon={faSignOutAlt}
+              onClick={handleLogout}
+            />
+          </Link>
         </Nav.Item>
       </Navbar.Collapse>
     </Navbar>
