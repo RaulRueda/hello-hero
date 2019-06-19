@@ -8,7 +8,7 @@ import { faAdjust } from "@fortawesome/free-solid-svg-icons";
 
 //Style
 import "./Header.scss";
-import logo from "../../assets/pokeball.png";
+import logo from "../../assets/pokemon_logo.png";
 
 const Header = () => {
   //Hint: My crazy idea of 0/flase is swith off (dark) and 1/true is on (light)
@@ -19,14 +19,14 @@ const Header = () => {
   };
 
   return (
-    <Navbar bg={getColorMode ? "light" : "dark"}>
+    <Navbar fixed="top" bg={getColorMode ? "light" : "dark"}>
       <Navbar.Brand href="/">
         <img
           src={logo}
-          width="30"
+          width="80"
           height="30"
           className="d-inline-block align-top"
-          alt="Pokeball"
+          alt="Logo"
         />
       </Navbar.Brand>
       <Navbar.Collapse className="justify-content-end">
