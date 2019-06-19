@@ -8,6 +8,9 @@ import { ForEach } from "somereactcomponents";
 import Paginator from "../Paginator/Paginator";
 import Character from "../Character/Character";
 
+//Style
+import "./List.scss";
+
 //Configuration
 import { pokeUrl, sizePage } from "../../config.json";
 
@@ -77,12 +80,16 @@ const List = () => {
         <thead>
           <tr>
             <th>#</th>
+            <th>Image</th>
             <th>Name</th>
           </tr>
         </thead>
         <tbody>
           <ForEach data={getCharacters} expandProps>
-            <CharacterRow clicked={handleCharacterClick} />
+            <CharacterRow
+              clicked={handleCharacterClick}
+              activePage={getState.activePage}
+            />
           </ForEach>
         </tbody>
       </Table>
@@ -96,9 +103,22 @@ const List = () => {
 };
 
 const CharacterRow = props => {
+  let characterId = props.index + 1 + sizePage * (props.activePage - 1);
+
   return (
     <tr onClick={() => props.clicked(props.index + 1)}>
-      <td>{props.index + 1}</td>
+      <td>{characterId}</td>
+      <td>
+        <img
+          className="mr-3 img-character"
+          src={
+            "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/" +
+            characterId +
+            ".png"
+          }
+          alt="..."
+        />
+      </td>
       <td>{props.name}</td>
     </tr>
   );
