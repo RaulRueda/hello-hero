@@ -1,5 +1,5 @@
 {
   "pokeUrl": "https://pokeapi.co/api/v2/",
   "sizePage": 50,
-  "loginUrl": ""
+  "loginUrl": "https://reqres.in/api/"
 }

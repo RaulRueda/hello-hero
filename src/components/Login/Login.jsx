@@ -7,12 +7,12 @@ import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
+//Services
+import login from "../../services/loginService";
+
 //Style
 import "./Login.scss";
 import pokeball from "../../assets/pokeball.png";
-
-//Configuration
-import { loginUrl } from "../../config.json";
 
 const Login = () => {
   const [getForm, setForm] = useState({
@@ -20,7 +20,14 @@ const Login = () => {
     password: ""
   });
 
-  const handleLoggin = () => {};
+  const handleLoggin = async event => {
+    event.preventDefault();
+
+    //Here should be a User class and inject the dependency, for now keep it simple
+    let response = await login(getForm.email, getForm.password);
+
+    if (response) window.location = "/";
+  };
 
   const handleInputChange = async event => {
     setForm({
