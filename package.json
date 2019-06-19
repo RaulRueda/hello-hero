@@ -41,5 +41,10 @@
       "last 1 safari version",
       "ie 11"
     ]
+  },
+  "devDependencies": {
+    "enzyme": "^3.10.0",
+    "enzyme-adapter-react-16": "^1.14.0",
+    "jest": "^24.7.1"
   }
 }
