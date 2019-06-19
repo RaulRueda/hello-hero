@@ -16,8 +16,8 @@ import pokeball from "../../assets/pokeball.png";
 
 const Login = () => {
   const [getForm, setForm] = useState({
-    email: "",
-    password: ""
+    email: "eve.holt@reqres.in",
+    password: "12345"
   });
 
   const handleLoggin = async event => {
