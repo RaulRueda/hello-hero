@@ -11,6 +11,9 @@ import "./Header.scss";
 import logo from "../../assets/pokemon_logo.png";
 
 const Header = () => {
+  const [getState, setState] = useState({
+    isLogged: localStorage.getItem("token") !== null ? true : false
+  });
   //Hint: My crazy idea of 0/flase is swith off (dark) and 1/true is on (light)
   const [getColorMode, setColorMode] = useState(0);
 
@@ -19,7 +22,10 @@ const Header = () => {
   };
 
   const handleLogout = () => {
-    console.log("Logout");
+    localStorage.removeItem("token");
+    setState({
+      isLogged: false
+    });
   };
 
   return (
@@ -33,33 +39,45 @@ const Header = () => {
           alt="Logo"
         />
       </Navbar.Brand>
-      <Navbar.Collapse className="justify-content-end">
-        <Nav.Item>
-          <FontAwesomeIcon
-            className={!getColorMode ? "icon-light" : "icon-dark"}
-            icon={faAdjust}
-            onClick={handleColorMode}
-          />
-        </Nav.Item>
-        <Nav.Item>
-          <Link to="/">Home</Link>
-        </Nav.Item>
-        <Nav.Item>
-          <Link to="/list">Pokemons</Link>
-        </Nav.Item>
-        <Nav.Item>
-          <Link to="/about">About</Link>
-        </Nav.Item>
-        <Nav.Item>
-          <Link to="/login">
+      {getState.isLogged ? (
+        <Navbar.Collapse className="justify-content-end">
+          <Nav.Item>
             <FontAwesomeIcon
               className={!getColorMode ? "icon-light" : "icon-dark"}
-              icon={faSignOutAlt}
-              onClick={handleLogout}
+              icon={faAdjust}
+              onClick={handleColorMode}
             />
-          </Link>
-        </Nav.Item>
-      </Navbar.Collapse>
+          </Nav.Item>
+          <Nav.Item>
+            <Link to="/">Home</Link>
+          </Nav.Item>
+          <Nav.Item>
+            <Link to="/list">Pokemons</Link>
+          </Nav.Item>
+          <Nav.Item>
+            <Link to="/about">About</Link>
+          </Nav.Item>
+          <Nav.Item>
+            <Link to="/login">
+              <FontAwesomeIcon
+                className={!getColorMode ? "icon-light" : "icon-dark"}
+                icon={faSignOutAlt}
+                onClick={handleLogout}
+              />
+            </Link>
+          </Nav.Item>
+        </Navbar.Collapse>
+      ) : (
+        <Navbar.Collapse className="justify-content-end">
+          <Nav.Item>
+            <FontAwesomeIcon
+              className={!getColorMode ? "icon-light" : "icon-dark"}
+              icon={faAdjust}
+              onClick={handleColorMode}
+            />
+          </Nav.Item>
+        </Navbar.Collapse>
+      )}
     </Navbar>
   );
 };
