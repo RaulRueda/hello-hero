@@ -1,6 +1,6 @@
 //Libraries
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -53,22 +53,22 @@ const Header = () => {
             />
           </Nav.Item>
           <Nav.Item>
-            <Link to="/">Home</Link>
+            <NavLink to="/">Home</NavLink>
           </Nav.Item>
           <Nav.Item>
-            <Link to="/list">Pokemons</Link>
+            <NavLink to="/list">Pokemons</NavLink>
           </Nav.Item>
           <Nav.Item>
-            <Link to="/about">About</Link>
+            <NavLink to="/about">About</NavLink>
           </Nav.Item>
           <Nav.Item>
-            <Link to="/login">
+            <NavLink to="/login">
               <FontAwesomeIcon
                 className={!getColorMode ? "icon-light" : "icon-dark"}
                 icon={faSignOutAlt}
                 onClick={handleLogout}
               />
-            </Link>
+            </NavLink>
           </Nav.Item>
         </Navbar.Collapse>
       ) : (
@@ -81,13 +81,13 @@ const Header = () => {
             />
           </Nav.Item>
           <Nav.Item>
-            <Link to="/login">
+            <NavLink to="/login">
               <FontAwesomeIcon
                 className={!getColorMode ? "icon-light" : "icon-dark"}
                 icon={faSignInAlt}
               />
               {" Login"}
-            </Link>
+            </NavLink>
           </Nav.Item>
         </Navbar.Collapse>
       )}
